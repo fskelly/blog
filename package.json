@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "npx tinacms dev -c \"astro dev\"",
 		"start": "astro dev",
-		"build": "if [ -n \"$TINATOKEN\" ] && [ \"${BRANCH:-main}\" = \"main\" ]; then tinacms build && astro build; else astro build; fi",
+		"build": "tinacms build && astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},

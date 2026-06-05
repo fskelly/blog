@@ -27,12 +27,26 @@ jobs:
 
       - run: npm ci
 
+      - name: Validate Tina secrets
+        env:
+          TINACLIENTID: ${{ secrets.TINACLIENTID }}
+          TINATOKEN: ${{ secrets.TINATOKEN }}
+          TINASEARCH: ${{ secrets.TINASEARCH }}
+        run: |
+          test -n "$TINACLIENTID" || (echo "Missing GitHub secret: TINACLIENTID" && exit 1)
+          test -n "$TINATOKEN" || (echo "Missing GitHub secret: TINATOKEN" && exit 1)
+          test -n "$TINASEARCH" || (echo "Missing GitHub secret: TINASEARCH" && exit 1)
+
       - name: Build site
         env:
           TINACLIENTID: ${{ secrets.TINACLIENTID }}
           TINATOKEN: ${{ secrets.TINATOKEN }}
           TINASEARCH: ${{ secrets.TINASEARCH }}
         run: npm run build
+
+      - name: Verify Tina admin output
+        run: |
+          test -f dist/admin/index.html || (echo "dist/admin/index.html was not generated" && exit 1)
 
       - uses: actions/upload-pages-artifact@v3
         with:
