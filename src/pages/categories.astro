@@ -37,7 +37,7 @@ const categories = Object.entries(categoryCounts)
 							{
 								categories.map((category) => (
 									<li>
-										<a class="tag" href={`/category/${category.name}`}>
+										<a class="tag" href={`${import.meta.env.BASE_URL}/category/${category.name}`}>
 											@{category.name}
 										</a>
 										<span class="count">({category.count})</span>

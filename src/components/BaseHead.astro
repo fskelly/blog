@@ -4,14 +4,14 @@ import "../style/global.css";
 
 import { title as SITE_TITLE } from "../settings/settings.json"
 
-const { title, description, image = "/home-blog-card.png" } = Astro.props;
+const { title, description, image = `${import.meta.env.BASE_URL}/home-blog-card.png` } = Astro.props;
 ---
 
 <head>
 	<!-- Global Metadata -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+	<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
 	<meta name="generator" content={Astro.generator} />
 
 	<!-- Primary Meta Tags -->
@@ -37,11 +37,11 @@ const { title, description, image = "/home-blog-card.png" } = Astro.props;
 	<!-- RSS Link -->
 	<link
 		rel="alternate"
-		href="/rss.xml"
+		href={`${import.meta.env.BASE_URL}/rss.xml`}
 		type="application/rss+xml"
 		title={SITE_TITLE}
 	/>
 
 	<!-- Sitemap -->
-	<link rel="sitemap" href="/sitemap-index.xml" />
+	<link rel="sitemap" href={`${import.meta.env.BASE_URL}/sitemap-index.xml`} />
 </head>

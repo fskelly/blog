@@ -8,7 +8,7 @@ const { tags, all, routePrefix = "tag", heading = "View posts by tag", symbol = 
 		tags &&
 			tags.map((tag) => (
 				<>
-					<a class="tag" href={`/${routePrefix}/${tag}`}>
+					<a class="tag" href={`${import.meta.env.BASE_URL}/${routePrefix}/${tag}`}>
 						{symbol}{tag}
 					</a>
 					{` `}

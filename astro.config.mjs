@@ -3,8 +3,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://YOUR-SITE.netlify.app/", // TODO: replace with your Netlify URL after first deploy
-	base: "/",
+	site: "https://fskelly.github.io",
+	base: "/blog",
 	integrations: [sitemap()],
 	redirects: {
 		"/admin": "/admin/index.html",

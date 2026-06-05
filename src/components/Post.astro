@@ -3,7 +3,7 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 ---
 
 <li class="post">
-	<a href={`/post/${slug}/`} class="title">{title}</a>
+	<a href={`${import.meta.env.BASE_URL}/post/${slug}/`} class="title">{title}</a>
 	<time datetime={date}>
 		{
 			new Date(date).toLocaleDateString("en-us", {
@@ -19,7 +19,7 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 		{
 			categories &&
 				categories.map((category) => (
-					<a class="tag" href={`/category/${category}`}>
+					<a class="tag" href={`${import.meta.env.BASE_URL}/category/${category}`}>
 						@{category}
 					</a>
 				))
@@ -27,7 +27,7 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 		{
 			tags &&
 				tags.map((tag) => (
-					<a class="tag" href={`/tag/${tag}`}>
+					<a class="tag" href={`${import.meta.env.BASE_URL}/tag/${tag}`}>
 						#{tag}
 					</a>
 				))

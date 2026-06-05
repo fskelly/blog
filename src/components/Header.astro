@@ -13,9 +13,9 @@ import { title, subtitle } from "../settings/settings.json"
 	</div>
 </header>
 <nav>
-	<HeaderLink href="/">home</HeaderLink>
-	<HeaderLink href="/posts">posts</HeaderLink>
-	<HeaderLink href="/categories">categories</HeaderLink>
+	<HeaderLink href={import.meta.env.BASE_URL}>home</HeaderLink>
+	<HeaderLink href={`${import.meta.env.BASE_URL}/posts`}>posts</HeaderLink>
+	<HeaderLink href={`${import.meta.env.BASE_URL}/categories`}>categories</HeaderLink>
 	<HeaderLink href="https://github.com/fskelly">github</HeaderLink>
 </nav>
 <style>
