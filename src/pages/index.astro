@@ -7,7 +7,6 @@ import HomePosts from "../components/HomePosts.astro";
 import ColorScript from "../components/ColorScript.astro";
 import Tags from "../components/Tags.astro";
 import { title, subtitle } from "../settings/settings.json"
-import { Content as About } from "./about.md";
 import getTags from "../scripts/getTags";
 import getCategories from "../scripts/getCategories";
 
@@ -22,10 +21,6 @@ const categories = getCategories(posts);
 	<body>
 		<Header title={title} />
 		<main>
-			<About />
-
-			<br />
-
 			<h3>Here's my most recent posts</h3>
 
 			<HomePosts allPosts={posts} />
