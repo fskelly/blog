@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Can I run this cheaper? Use case for the Azure Cost Management API"
 slug: azure-cost-management-playing-with-api-in-powershell
 description: >-
@@ -10,7 +10,6 @@ tags:
 categories:
   - azure
   - azure-native
-draft: true
 ---
 ## What are we doing?
 
@@ -223,4 +222,5 @@ if ($regionCheck -eq "y")
 ```
 
 Full script can be found [here](https://github.com/fskelly/flkelly-AzureCode-powershell/blob/main/cost-management/get-vms-list-costings.ps1)
+
 

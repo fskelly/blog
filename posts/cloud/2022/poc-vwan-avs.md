@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using Azure Virtual WAN to connect to Azure VMware Solution"
 slug: poc-vwan-avs
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2022-03-28T07:27:16+01:00
 tags:
   - azure
-draft: true
 ---
 ## How do I connect my on-premises environment to AVS in a quick and simple way?
 
@@ -62,4 +61,5 @@ This solution then allow you connect your on-premises environment to connect to 
 
 [Azure VMware Solution]: https://docs.microsoft.com/en-us/azure/azure-vmware/introduction
 [Azure Virtual WAN]: https://docs.microsoft.com/en-us/azure/virtual-wan/virtual-wan-about
+
 

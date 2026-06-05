@@ -1,4 +1,4 @@
-﻿---
+---
 title: "New LDAPS run-command for Azure VMware Solution"
 slug: avs-new-ldaps-run-command
 description: >-
@@ -8,7 +8,6 @@ tags:
   - avs
   - identity
   - ldaps
-draft: true
 ---
 ## What are we doing?
 
@@ -27,4 +26,5 @@ You will notice that the "SSLCertificateSasUrl" field is now **OPTIONAL**. The "
 ![information block explaining the new process](/blog/assets/cloud/2023/avs-new-ldaps-run-command/new-avs-run-command-new-1.png)
 
 A very welcome change.
+
 

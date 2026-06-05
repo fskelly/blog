@@ -54,7 +54,6 @@ export default defineConfig({
 					added: new Date(),
 					tags: [],
 					categories: [],
-					draft: false,
 				}),
 				ui: {
 					dateFormat: "MMM DD YYYY",
@@ -158,12 +157,6 @@ export default defineConfig({
 						name: "updated",
 						type: "datetime",
 						dateFormat: "MMM DD YYYY",
-					},
-					{
-						label: "Draft",
-						name: "draft",
-						type: "boolean",
-						description: "Hide this post from listings, the homepage, and the RSS feed.",
 					},
 					{
 						type: "rich-text",

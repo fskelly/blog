@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure Rest Api Postman Basics"
 slug: azure-rest-api-postman-basics
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2021-04-14T09:02:18+02:00
 tags:
   - azure
-draft: true
 ---
 # Absolute basics with Azure and [PostMan](www.postman.com)
 
@@ -46,4 +45,5 @@ With most of the Postman queries, the "**Pre-request Script**" is also used, thi
 ![Postman with pre-request script](/blog/assets/cloud/2021/azure-rest-api-postman-basics/postmanApiPreRequestScript.png)
 
 So, go forth and play. My Postman Collection can be found [here](https://github.com/fskelly/flkelly-cloudblog/blob/main/blogFiles/azureApiPostman/Azure%20REST%20-%20repo%20ready.postman_collection.json)
+
 

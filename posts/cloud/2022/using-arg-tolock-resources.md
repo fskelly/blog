@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using Azure Resource Graph and Tags to lock items in Azure"
 slug: using-arg-tolock-resources
 description: >-
@@ -10,7 +10,6 @@ tags:
 categories:
   - azure
   - azure-resource-graph
-draft: true
 ---
 ## What are we doing?
 
@@ -153,4 +152,5 @@ Results can be seen below. Our Locks are now in place. Since my account is an **
 ![resulting locks in azure](/blog/assets/cloud/2022/using-arg-tolock-resources/resulting-locks.jpg)
 
 This code and concept can be easily updated or modified to meet different your specific requirements.
+
 

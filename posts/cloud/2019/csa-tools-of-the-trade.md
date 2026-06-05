@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Csa Tools of the Trade"
 slug: csa-tools-of-the-trade
 description: >-
@@ -7,7 +7,6 @@ added: 2019-07-09T16:46:43+02:00
 tags:
   - csa
   - cloud-tools
-draft: true
 ---
 So a question I often get asked is "what tools or products do you use?". So I decided to do a post around the tools and technologies that I personally use on a daily basis. So to start this is what people see on my screen on a daily basis.
 
@@ -27,4 +26,5 @@ Now, aside from Visual Studio Code, I also use the following:
 2. WSL2 (Windows Subsystem for Linux 2), I am running the Preview version of this as it is not yet GA, but so far so good.
 
 I use many other applications, however this is my collection of "go-to" tools. This should be in your "cloud arsenal"
+
 

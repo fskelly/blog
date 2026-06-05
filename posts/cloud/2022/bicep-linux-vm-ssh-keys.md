@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using SSH Keys with Bicep based Linux VM templates"
 slug: bicep-linux-vm-ssh-keys
 description: >-
@@ -11,7 +11,6 @@ tags:
 categories:
   - iac
   - azure
-draft: true
 ---
 I this post, I use bicep files for the deployment of Linux VMs AND I add some magic with PowerSehll to allow for the creation or using of existing SSH keys with these VMs.
 
@@ -91,4 +90,5 @@ ssh -i $privateKeyPath $userName@$hostName
 ```
 
 Now you can automatically connect to your newly deployed VM with an SSH Key. How great is that?
+
 

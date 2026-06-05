@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure VMware Solution How Do I 'Monitor my SDDC Deployment'"
 slug: azure-vmware-solution-how-do-i-monitor-sddc-deployment
 description: >-
@@ -8,7 +8,6 @@ tags:
   - getting-started
   - how-do-i
   - information
-draft: true
 ---
 ## What are we doing?
 
@@ -115,4 +114,5 @@ do {
    } until ($provisioningStatus -ne "Building" )
 
 ```
+
 

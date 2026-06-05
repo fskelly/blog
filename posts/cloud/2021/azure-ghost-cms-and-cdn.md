@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure Ghost Cms and Cdn"
 slug: azure-ghost-cms-and-cdn
 description: >-
@@ -9,7 +9,6 @@ tags:
   - cdn
   - blog
   - hugo
-draft: true
 ---
 I moved my blog onto HUGO. Not everyone would want to do this necessarily, there is a bit of a learning curve, part of the reason **I DID IT** :). However there are other platforms you can use and still add more functionality if you want.  
 
@@ -74,4 +73,5 @@ This process should not take too long, but now we want a **certificate** and the
 5. And completed ![process complete](/blog/assets/cloud/2021/azure-ghost-cms-and-cdn/cdnCert4.png)
 
 Now here is the [end result](https://demoghost.fskelly.com) - note the HTTPS 👍 ![site with HTTPS Cert](/blog/assets/cloud/2021/azure-ghost-cms-and-cdn/cdnDemoPost.png)
+
 

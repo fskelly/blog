@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure Resource Group Enterprise Scale Landing Zone queries"
 slug: arg-mg-query-quick-post
 description: >-
@@ -12,7 +12,6 @@ tags:
 categories:
   - azure
   - resource-graph
-draft: true
 ---
 # Azure Resource Graph Examples
 
@@ -27,4 +26,5 @@ Hope this helps and keep an eye out for more.
 Follow me for more.  
 [Twitter](https://twitter.com/fskelly)
 [LinkedIn](https://www.linkedin.com/in/fletcherkelly/)
+
 

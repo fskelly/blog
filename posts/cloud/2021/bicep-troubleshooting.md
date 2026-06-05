@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Bicep Troubleshooting"
 slug: bicep-troubleshooting
 description: >-
@@ -10,7 +10,6 @@ tags:
 categories:
   - azure
   - iac
-draft: true
 ---
 # Some basic "troubleshooting" with [Azure Bicep](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)
 
@@ -56,4 +55,5 @@ az bicep build --file .\main.bicep
 This will then throw the actual bicep error, and then you can fix your file and deploy again.
 
 Hope this helps you.
+
 

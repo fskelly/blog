@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Cli List Locations and Peers"
 slug: cli-list-locations-and-peers
 description: >-
@@ -10,7 +10,6 @@ tags:
 categories:
   - command-line
   - azure
-draft: true
 ---
 # How to use the Azure CLI to list Azure Locations and their peers
 
@@ -87,4 +86,5 @@ az account list-locations --query "[?not_null(metadata.latitude)] .{RegionName:n
   "RegionName": "brazilsoutheast"
 }
 ```
+
 

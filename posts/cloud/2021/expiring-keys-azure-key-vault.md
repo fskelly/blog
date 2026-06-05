@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Expiring Keys and Secrets within Azure Key Vault"
 slug: expiring-keys-azure-key-vault
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2021-01-18T07:06:03+02:00
 tags:
   - azure
-draft: true
 ---
 I was working with a customer the other day and a fairly simple ask came up, I however could not find an immediate answer within the portal.  
 
@@ -50,4 +49,5 @@ foreach ($nonExpiringSecret in $nonExpiringSecrets)
 ```
 
 As you can see simply replace the variables that you need to, namely *```$vaultName```* (**name of the Azure Keyvault**) and *```$kvRG```* (**name of the Resource Group housing the Azure Keyvault**)
+
 

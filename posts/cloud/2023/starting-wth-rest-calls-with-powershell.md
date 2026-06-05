@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Starting Wth API Rest Calls With Powershell"
 slug: starting-wth-rest-calls-with-powershell
 description: >-
@@ -11,7 +11,6 @@ tags:
 categories:
   - azure
   - azure-native
-draft: true
 ---
 ## What are we doing?
 
@@ -87,4 +86,5 @@ $queryResult.value | select-object -Property name,location
 ```
 
 This same principle can be applied to any API call, just change the scope and the API call. I will be adding more to this as I go along, but this is a good start.
+
 

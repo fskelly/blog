@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Importance of Networking Azure"
 slug: importance-of-networking-azure
 description: >-
@@ -8,7 +8,6 @@ tags:
   - csa
   - architecture
   - networking
-draft: true
 ---
 As a start to this blog post, I think it is important to understand how I see my role as a CSA (Cloud Solution Architect) with my customer. I am primarily a trusted advisor and my customers respect what I have to say, I question and challenge my customers in a constructive way to approach the challenge or problem statement in a different way. I have an amazing role of using Azure as my LEGO playpen and then building a custom solution (LEGO model) to help my customers.
 
@@ -19,4 +18,5 @@ So, having these discussions is not an uncommon practice and these are the types
 You cannot necessarily think of networking in silos anymore. Yes, networking can be silo'ed and many people do this. However with the "new world" of cloud and the networking associated to this concept, networking is now a critical point on your cloud journey. There are multiple options available here as a start. THe main role of a Cloud SOlutions Architect or more importantly a trusted advisor, is to understand the requirements of your customer and work with the required teams, usually networking, InfoSec, business owner and Application owner to determine the correct networking option for the cusotmer. This would be a mix of solutions and architectures.
 
 This is a great start to understanding which technologies can or could be used to serve a particular need and then this can be built up to a solution that is extendable and usable by your customer.
+
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using Arc to SSH into Linux and Windows"
 slug: arc-ssh-windows-linux
 description: >-
@@ -9,7 +9,6 @@ tags:
 categories:
   - hybrid
   - azure
-draft: true
 ---
 ## What are we doing?
 
@@ -72,4 +71,5 @@ The steps for connection from the portal and the required **Az**ure **c**onnecte
 ![Connect via portal to Windows Azure Arc machine is successful](/blog/assets/cloud/2022/arc-ssh-windows-linux/connect-button-portal-windows-vm-connect-1.png)
 
 So there you have it, an SSH connection from the Azure portal to a Windows AND Linux Arc-enabled machine.
+
 

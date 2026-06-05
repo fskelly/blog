@@ -31,6 +31,12 @@ const categories = getCategories(posts);
 			<HomePosts allPosts={posts} />
 
 			<p class="center">
+				<a href={`${import.meta.env.BASE_URL}/posts`}>
+					View all posts
+				</a>
+			</p>
+
+			<p class="center">
 				You can also <a href={`${import.meta.env.BASE_URL}/rss.xml`}>
 					subscribe with RSS!
 				</a>

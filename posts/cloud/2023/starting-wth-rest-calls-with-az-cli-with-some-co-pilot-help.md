@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Starting Wth Rest Calls With AzCli With Some Copilot Help"
 slug: starting-wth-rest-calls-with-az-cli-with-some-co-pilot-help
 description: >-
@@ -13,7 +13,6 @@ categories:
   - azure
   - azure-native
   - ai
-draft: true
 ---
 ## What are we doing?
 
@@ -98,4 +97,5 @@ echo $queryResult | jq -r '.value[] | {name: .name, location: .location}'
 ```
 
 This same principle can be applied to any API call, just change the scope and the API call. I will be adding more to this as I go along, but this is a good start.
+
 

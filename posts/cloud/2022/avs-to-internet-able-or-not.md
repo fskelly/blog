@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure VMware Solution: To 'Internet Enabled' or not?"
 slug: avs-to-internet-able-or-not
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2022-03-17T16:06:00Z
 tags:
   - azure
-draft: true
 ---
 **Guest Post**
 Author: [Robin Heringa](/about/robinheringa/)  
@@ -37,4 +36,5 @@ There are various options to implement such an infrastructure.
 For more information on using Azure Virtual WAN for this scenario, see [Enable public internet for Azure VMware Solution workloads](https://docs.microsoft.com/en-us/azure/azure-vmware/enable-public-internet-access).
 
 Next to this, it is of course also possible to either "inject" the default route from the customer on-premises infrastructure (in which case on-premises and Azure will probably share the same Internet break-out point) or it is possible to implement network virtual appliances (NVA) from our networking partners (Fortigate, Palo Alto, Baracuda and many others) to inject an Azure specific default route and attract the traffic destined for the internet. We will go deeper into using third party solutions in later articles.
+
 

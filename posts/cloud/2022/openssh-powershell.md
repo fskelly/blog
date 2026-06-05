@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using Openssh and creating SSH Keys with Powershell"
 slug: openssh-powershell
 description: >-
@@ -7,7 +7,6 @@ added: 2022-04-25T14:27:03+01:00
 tags:
   - powershell
   - ssh
-draft: true
 ---
 In this post I show you my process for creating SSH Keys for Linux Machines.
 
@@ -60,4 +59,5 @@ If you want to use this key with an existing, you can. :smile: . We can perform 
 $destinationIp = ""
 type $pubKeyPath | ssh $username@$destinationIp "cat >> .ssh/authorized_keys"
 ```
+
 

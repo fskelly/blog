@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure VMware Solution Starter Links"
 slug: azure-vmware-solution-starter-links
 description: >-
@@ -8,7 +8,6 @@ tags:
   - getting-started
   - links
   - information
-draft: true
 ---
 ## What are we doing?
 
@@ -72,4 +71,5 @@ Providing people with a list of useful links and blog posts to help you get grou
 |Topic | Reference|
 |---------|----------|
 |Azure VMware Solution Road map | • [Azure updates - Azure VMware Solution](https://azure.microsoft.com/en-us/updates/?query=%22azure%20vmware%20solution%22)|
+
 

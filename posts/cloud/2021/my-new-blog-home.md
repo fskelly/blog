@@ -1,4 +1,4 @@
-﻿---
+---
 title: "My New Blog Home with Azure Static Web App"
 slug: my-new-blog-home
 description: >-
@@ -7,7 +7,6 @@ added: 2021-01-05T15:57:04+02:00
 tags:
   - azure
   - static-web
-draft: true
 ---
 So, I have spent the last few days / weeks deciding the best way to host a blog. Now I have a decidedly "split personality". By this I mean I like to segregate my work and personal hobbies. This can be quite beneficial as this allows me to test a few things.
 
@@ -25,4 +24,5 @@ So now with the basics out of the way,  I needed to chose a static content gener
 The blog you are reading now is hosted with the above criteria and of course a custom domain name.
 
 More to come soon.
+
 

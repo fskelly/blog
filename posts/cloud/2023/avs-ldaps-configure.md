@@ -1,4 +1,4 @@
-﻿---
+---
 title: "How to configure LDAPS with AVS"
 slug: avs-ldaps-configure
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2023-01-09T08:39:32Z
 tags:
   - azure
-draft: true
 ---
 In this post, we are going to be configuring LDAPS (LDAP Over SSL) for Azure Vmware Solution (AVS).
 
@@ -212,4 +211,5 @@ You can also check the output and ensure that the correct name was added.
 You can logon with LDAP based credentials.
 ![code-snippet-13](/blog/assets/cloud/2023/avs-ldaps-configure/snippet13.jpg) 
 ![code-snippet-14](/blog/assets/cloud/2023/avs-ldaps-configure/snippet14.jpg)
+
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Network Security Group Change Alerting"
 slug: network-security-group-change-alerting
 description: >-
@@ -7,7 +7,6 @@ added: 2019-02-20T08:21:49+02:00
 tags:
   - nsg
   - azure-monitor
-draft: true
 ---
 So, I was with a customer and they are asking for a fairly standard alert.  
 
@@ -26,4 +25,5 @@ Get-AzActionGroup
 ```
 
 Hope this helps people in the field to find the Resource Group ID more easily.
+
 

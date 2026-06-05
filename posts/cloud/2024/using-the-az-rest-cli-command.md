@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Using the AZ Rest CLI command"
 slug: using-the-az-rest-cli-command
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2024-08-29T16:00:56Z
 tags:
   - azure
-draft: true
 ---
 What are we doing?
 
@@ -65,4 +64,5 @@ With the correct API version appended 👍
 ![failure](/blog/assets/cloud/2024/using-the-az-rest-cli-command/image-5.png)
 
 You can now do the same process with other IDs that are returned.
+
 

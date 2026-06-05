@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure Resource Graph - More queries for Networking and Management Groups"
 slug: 2021-arg-networking-mgmt-more
 description: >-
@@ -14,7 +14,6 @@ categories:
   - resource-graph
   - networking
   - management-group
-draft: true
 ---
 Just some more queries I have developed.
 
@@ -93,4 +92,5 @@ resourcecontainers
 Follow me for more.  
 [Twitter](https://twitter.com/fskelly)  
 [LinkedIn](https://www.linkedin.com/in/fletcherkelly/)
+
 

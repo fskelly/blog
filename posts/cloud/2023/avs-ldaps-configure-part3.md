@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Azure VMware Solution: A comprehensive guide to LDAPS identity integration - Part 3"
 slug: avs-ldaps-configure-part3
 description: >-
@@ -8,7 +8,6 @@ tags:
   - avs
   - identity
   - ldaps
-draft: true
 ---
 Author(s): [Robin Heringa](/about/robinheringa/) and [Fletcher Kelly](/about/fletcherkelly/) 
 
@@ -352,4 +351,5 @@ foreach ($blob in $blobs)
 
 [snippets.ps1 file (all code commands)](https://github.com/fskelly/flkelly-cloudblog/blob/main/content/post/2023/avs-ldaps-configure-part1/snippets.ps1)  
 [< Previous](../avs-ldaps-configure-part2/) [Next>](../avs-ldaps-configure-part4/)
+
 

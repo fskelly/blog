@@ -1,4 +1,4 @@
-﻿---
+---
 title: "I want to use Azure VMware Solution, what should I know about networking?"
 slug: new-to-avs-nomon-networking-1
 description: >-
@@ -6,7 +6,6 @@ description: >-
 added: 2022-03-09T16:06:00Z
 tags:
   - azure
-draft: true
 ---
 **What else do I need to know when using Azure VMware Solution (AVS)?**
 
@@ -34,4 +33,5 @@ Networking can start to get a little interesting as there would now be many rout
 1. Migration should be as "short-term" as possible, the longer the migration takes, the more networking challenges and complexities will arise.
 
 Guidance for networking can be found [here](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-network-topology-connectivity)
+
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Check Powershell Console Type"
 slug: check-powershell-type
 description: >-
@@ -7,7 +7,6 @@ added: 2022-09-14T11:14:30+01:00
 tags:
   - powershell
   - hybrid
-draft: true
 ---
 I have been working with some Microsoft Hybrid technologies. My specific example here is around [Azure Arc-enabled VMware vSphere](https://docs.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/overview) aspects. When running the scripts provided here there is a key aspect.
 
@@ -38,4 +37,5 @@ if ($consoleType.Name -match 'ise')
 Very simple fix but can save hours of troubleshooting.
 
 You may even notice the change to **write-output** from **write-host** as part of [Cross platform support](https://devblogs.microsoft.com/powershell/using-psscriptanalyzer-to-check-powershell-version-compatibility/)
+
 

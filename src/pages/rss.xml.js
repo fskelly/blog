@@ -5,7 +5,6 @@ import { title, subtitle } from "../settings/settings.json";
 let posts = await getCollection("posts");
 
 posts = posts
-	.filter((p) => !p.data.draft)
 	.sort(
 		(a, b) =>
 			new Date(b.data.updated || b.data.added).valueOf() -
