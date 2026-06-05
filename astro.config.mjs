@@ -6,9 +6,6 @@ export default defineConfig({
 	site: "https://fskelly.github.io",
 	base: "/blog",
 	integrations: [sitemap()],
-	redirects: {
-		"/admin": "/admin/index.html",
-	},
 	markdown: {
 		shikiConfig: {
 			theme: "material-theme-darker",
