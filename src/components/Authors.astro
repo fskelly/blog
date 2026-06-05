@@ -1,0 +1,70 @@
+---
+import authors from '../data/authors.json';
+---
+
+<div class="authors-grid">
+  {authors.map((author) => (
+    <div class="author-card">
+      <h3>{author.name}</h3>
+      <p class="bio">{author.bio}</p>
+      {author.github && (
+        <a href={`https://github.com/${author.github}`} target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      )}
+    </div>
+  ))}
+</div>
+
+<style>
+  .authors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .author-card {
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: var(--card-bg, #fff);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .author-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .author-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+  }
+
+  .author-card .bio {
+    margin: 0 0 1rem 0;
+    color: var(--text-muted, #666);
+    line-height: 1.5;
+  }
+
+  .author-card a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color, #0066cc);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .author-card a:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 640px) {
+    .authors-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
