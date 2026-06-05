@@ -1,28 +1,26 @@
 ---
 title: Enhancing Node-Red with GUIDs
-added: 2025-06-30T13:47:26+01:00
 slug: enhancing-node-red
-description: >-
-    A simple way to add traceability to your Node-Red flows
+description: A simple way to add traceability to your Node-Red flows
 tags:
-    - node-red  
-    - improvement
+  - node-red
+  - improvement
+  - personal
 categories:
-    - home-automation
+  - home-automation
+added: 2025-06-30T12:47:26.000Z
 ---
 
 Do you have a lot of automation in your house using [Node-RED](https://nodered.org/) and are you looking for a way to increase the possibility of finding a faulty flow? If yes, follow me as I come up with a solution that might work for you as well.
 
 <!--more-->
 
-
 This is a use case for me. Your mileage may vary.
-This will take some time. 
+This will take some time.
 
 > Anything worth doing is worth doing well.
 
 ## Background
-
 
 So let me explain the problem and see if this sounds familiar. I use [Node-RED](https://nodered.org/) **A LOT** along with [Home Assistant](https://www.home-assistant.io). I made the decision a long time ago that the automations built into Home Assistant and the YAML engine was not for me. Please note that was quite a while, probably 5 or 6 years ago - the automation interface in  [Home Assistant](https://www.home-assistant.io) is so much better now, *however* I am heavily invested in [Node-RED](https://nodered.org/) and will not be going back anytime soon.
 
@@ -32,15 +30,13 @@ I have a lot of flows and nodes in my environment. I make heavy use of links and
 
 ## How did I fix this?
 
-
 I have spent time and this will be an on-going process to add GUIDs (yes, those long 32 digit things that are now everywhere) and simple use of a [subflow](https://nodered.org/docs/user-guide/editor/workspace/subflows). The [subflow](https://nodered.org/docs/user-guide/editor/workspace/subflows) I created is simply used right at the beginning of my flow and its **G**lobally **U**nique **ID**entifier now allows me to at least back-track to the start of the problematic flow and if the debug nodes returns more than 1 **GUID** that is also helpful.
 
 So a simple enough change, but time-consuming to implement.
 
+[![My GUID Subflow](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)
 
-[![My GUID Subflow](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)
-
-_Click image to view full size._
+*Click image to view full size.*
 
 Here is the export of my subflow - feel free to use it.
 
@@ -50,25 +46,24 @@ Here is the export of my subflow - feel free to use it.
 
 Example flow, this is just a simple example to show how everything stitches together.
 
-[![Simple flow example using the GUID subflow](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)
+[![Simple flow example using the GUID subflow](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)
 
-_Click image to view full size._
+*Click image to view full size.*
 
 Configuration of sub-flow
 
-[![Subflow](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)
+[![Subflow](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)
 
-_Click image to view full size._
+*Click image to view full size.*
 
 Debug node
 
-[![Debug information with GUID](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)
+[![Debug information with GUID](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)
 
-_Click image to view full size._
-
+*Click image to view full size.*
 
 ## Is it worth it?
 
 Well, that depends on you and how much and effort you want to spend making your automation system resilient, robust and easy to troubleshoot.
 
-For me, absolutely **YES**
+For me, absolutely **YES, **however in the last while the Automation capapbilities in Home Assisatant have improved greatly. Maybe I will look into this at some time in the future.
