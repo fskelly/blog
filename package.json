@@ -6,6 +6,7 @@
 		"dev": "npx tinacms dev -c \"astro dev\"",
 		"start": "astro dev",
 		"build": "tinacms build && astro build",
+		"build:astro": "astro build && pagefind --site dist",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
@@ -17,7 +18,9 @@
 		"prettier-plugin-astro": "^0.14.1"
 	},
 	"dependencies": {
+		"@pagefind/default-ui": "^1.5.2",
 		"@tinacms/cli": "^1.12.6",
+		"pagefind": "^1.5.2",
 		"tinacms": "^2.10.1"
 	}
 }

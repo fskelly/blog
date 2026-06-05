@@ -46,6 +46,7 @@ jobs:
           # Try TinaCMS build but don't block deployment if it fails
           npx tinacms build || echo "TinaCMS build failed, continuing with Astro build"
           npx astro build
+          npx pagefind --site dist
 
       - name: Verify build output
         run: |
