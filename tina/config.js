@@ -1,3 +1,4 @@
+// Re-index trigger
 import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
@@ -177,3 +178,4 @@ export default defineConfig({
 		maxSearchIndexFieldLength: 100,
 	},
 });
+
