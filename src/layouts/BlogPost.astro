@@ -13,8 +13,16 @@ const allTags = getTags(posts);
 const allCategories = getCategories(posts);
 
 let {
-	content: { title, description, added, updated, tags, categories, heroImage },
+	content: { title, description, added, updated, tags, categories, heroImage, slug },
 } = Astro.props;
+
+// Get sorted posts for navigation
+const sortedPosts = posts.sort((a, b) => new Date(b.data.updated || b.data.added).valueOf() - new Date(a.data.updated || a.data.added).valueOf());
+
+// Find current post index
+const currentIndex = sortedPosts.findIndex(p => p.data.slug === slug);
+const prevPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 
 added = new Date(added).toLocaleDateString(
 	"en-us",
@@ -57,6 +65,19 @@ if (updated) {
 				<div class="blog-post">
 					<slot />
 				</div>
+				<hr />
+				<nav class="post-navigation">
+					{prevPost && (
+						<a href={`/blog/post/${prevPost.data.slug}/`} class="nav-prev" title="Previous post">
+							← {prevPost.data.title}
+						</a>
+					)}
+					{nextPost && (
+						<a href={`/blog/post/${nextPost.data.slug}/`} class="nav-next" title="Next post">
+							{nextPost.data.title} →
+						</a>
+					)}
+				</nav>
 			</article>
 		</main>
 		<Tags tags={allCategories} all routePrefix="category" heading="View posts by category" symbol="@" />
@@ -65,3 +86,47 @@ if (updated) {
 		<ColorScript />
 	</body>
 </html>
+
+<style>
+	.post-navigation {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		margin: 2rem 0 0 0;
+		padding-top: 1rem;
+	}
+
+	.nav-prev {
+		text-align: left;
+	}
+
+	.nav-next {
+		text-align: right;
+		justify-self: end;
+	}
+
+	.post-navigation a {
+		display: block;
+		padding: 0.5rem 0;
+		color: var(--text-color, inherit);
+		text-decoration: none;
+		border-top: 1px solid var(--border-color, #ddd);
+		transition: color 0.2s ease;
+	}
+
+	.post-navigation a:hover {
+		color: var(--accent-color, #0066cc);
+	}
+
+	@media (max-width: 640px) {
+		.post-navigation {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.nav-next {
+			justify-self: auto;
+			text-align: left;
+		}
+	}
+</style>
