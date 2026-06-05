@@ -6,6 +6,7 @@ const { allPosts } = Astro.props;
 //.sort(() => 0.5 - Math.random()).slice(0, 3);
 
 let posts = allPosts
+	.filter((p) => !p.data.draft)
 	.sort(
 		(a, b) =>
 			new Date(b.data.updated || b.data.added).valueOf() -

@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 import ColorScript from "../components/ColorScript.astro";
 import { title } from "../settings/settings.json";
 
-const posts = await getCollection("posts");
+const posts = (await getCollection("posts")).filter((p) => !p.data.draft);
 
 const categoryCounts = posts.reduce((acc, post) => {
 	const categories = post.data.categories || [];

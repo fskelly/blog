@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # TinaCMS generated
 tina/__generated__/
+
+# scratch / cloned sources used by porter scripts
+tmp/

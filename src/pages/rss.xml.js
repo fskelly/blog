@@ -4,11 +4,13 @@ import { title, subtitle } from "../settings/settings.json";
 
 let posts = await getCollection("posts");
 
-posts = posts.sort(
-	(a, b) =>
-		new Date(b.data.updated || b.data.added).valueOf() -
-		new Date(a.data.updated || a.data.added).valueOf()
-);
+posts = posts
+	.filter((p) => !p.data.draft)
+	.sort(
+		(a, b) =>
+			new Date(b.data.updated || b.data.added).valueOf() -
+			new Date(a.data.updated || a.data.added).valueOf()
+	);
 
 export const GET = () =>
 	rss({
