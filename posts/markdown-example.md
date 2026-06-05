@@ -5,6 +5,8 @@ description: >-
   Check out how markdown is rendered!
 tags:
   - technical
+categories:
+  - software
 added: "May 09 2024"
 ---
 

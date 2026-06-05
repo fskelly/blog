@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ColorScript from "../components/ColorScript.astro";
+import { title } from "../settings/settings.json";
+
+const posts = await getCollection("posts");
+
+const categoryCounts = posts.reduce((acc, post) => {
+	const categories = post.data.categories || [];
+	categories.forEach((category) => {
+		acc[category] = (acc[category] || 0) + 1;
+	});
+	return acc;
+}, {});
+
+const categories = Object.entries(categoryCounts)
+	.map(([name, count]) => ({ name, count }))
+	.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+---
+
+<!doctype html>
+<html lang="en-us">
+	<BaseHead title={`${title} | Categories`} description="Browse posts by category" />
+	<body>
+		<Header />
+		<main>
+			<content>
+				<h3>Categories</h3>
+				{
+					categories.length === 0 ?
+						<p>No categories yet.</p>
+						:
+						<ul class="categories-list">
+							{
+								categories.map((category) => (
+									<li>
+										<a class="tag" href={`/category/${category.name}`}>
+											@{category.name}
+										</a>
+										<span class="count">({category.count})</span>
+									</li>
+								))
+							}
+						</ul>
+				}
+			</content>
+		</main>
+		<Footer />
+		<ColorScript />
+	</body>
+</html>
+
+<style>
+	.categories-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.categories-list li {
+		margin: 0.5rem 0;
+	}
+
+	.count {
+		margin-left: 0.4rem;
+		opacity: 0.8;
+	}
+</style>

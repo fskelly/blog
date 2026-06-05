@@ -1,15 +1,15 @@
 ---
-const { tags, all } = Astro.props;
+const { tags, all, routePrefix = "tag", heading = "View posts by tag", symbol = "#" } = Astro.props;
 ---
 
-{all && <h3 class="tag-title">View posts by tag</h3>}
+{all && <h3 class="tag-title">{heading}</h3>}
 <div class=`${all && "tags"}`>
 	{
 		tags &&
 			tags.map((tag) => (
 				<>
-					<a class="tag" href={`/tag/${tag}`}>
-						#{tag}
+					<a class="tag" href={`/${routePrefix}/${tag}`}>
+						{symbol}{tag}
 					</a>
 					{` `}
 				</>

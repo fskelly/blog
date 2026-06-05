@@ -52,6 +52,7 @@ export default defineConfig({
 					title: "New Post",
 					added: new Date(),
 					tags: [],
+					categories: [],
 				}),
 				ui: {
 					dateFormat: "MMM DD YYYY",
@@ -119,6 +120,30 @@ export default defineConfig({
 							{
 								value: "projects",
 								label: "Projects",
+							},
+						],
+					},
+					{
+						label: "Categories",
+						name: "categories",
+						type: "string",
+						list: true,
+						options: [
+							{
+								value: "home-automation",
+								label: "Home Automation",
+							},
+							{
+								value: "software",
+								label: "Software",
+							},
+							{
+								value: "projects",
+								label: "Projects",
+							},
+							{
+								value: "personal",
+								label: "Personal",
 							},
 						],
 					},

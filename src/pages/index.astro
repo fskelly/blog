@@ -9,9 +9,11 @@ import Tags from "../components/Tags.astro";
 import { title, subtitle } from "../settings/settings.json"
 import { Content as About } from "./about.md";
 import getTags from "../scripts/getTags";
+import getCategories from "../scripts/getCategories";
 
 const posts = await getCollection("posts");
 const tags = getTags(posts);
+const categories = getCategories(posts);
 ---
 
 <!doctype html>
@@ -33,6 +35,10 @@ const tags = getTags(posts);
 					subscribe with RSS!
 				</a>
 			</p>
+			<br />
+
+			<Tags tags={categories} all routePrefix="category" heading="View posts by category" symbol="@" />
+
 			<br />
 
 			<Tags tags={tags} all />

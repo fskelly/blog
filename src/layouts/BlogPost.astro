@@ -6,12 +6,14 @@ import Footer from "../components/Footer.astro";
 import ColorScript from "../components/ColorScript.astro";
 import Tags from "../components/Tags.astro";
 import getTags from "../scripts/getTags";
+import getCategories from "../scripts/getCategories";
 
 const posts = await getCollection("posts");
 const allTags = getTags(posts);
+const allCategories = getCategories(posts);
 
 let {
-	content: { title, description, added, updated, tags, heroImage },
+	content: { title, description, added, updated, tags, categories, heroImage },
 } = Astro.props;
 
 added = new Date(added).toLocaleDateString(
@@ -49,6 +51,7 @@ if (updated) {
 					:
 					<span>{added && <time>{added}</time>}</span>
 				}
+				<Tags tags={categories} routePrefix="category" heading="View posts by category" symbol="@" />
 				<Tags tags={tags} />
 				<hr />
 				<div class="blog-post">
@@ -56,6 +59,7 @@ if (updated) {
 				</div>
 			</article>
 		</main>
+		<Tags tags={allCategories} all routePrefix="category" heading="View posts by category" symbol="@" />
 		<Tags tags={allTags} all />
 		<Footer />
 		<ColorScript />

@@ -10,31 +10,31 @@ import { title, subtitle } from "../../settings/settings.json"
 
 export async function getStaticPaths() {
 	let posts = await getCollection("posts");
-	const tags = posts.reduce((allTags, post) => {
-		const postTags = post.data.tags;
-		if (postTags) {
-			postTags.forEach((tag) => {
-				if (!allTags[tag]) {
-					allTags[tag] = [];
+	const categories = posts.reduce((allCategories, post) => {
+		const postCategories = post.data.categories;
+		if (postCategories) {
+			postCategories.forEach((category) => {
+				if (!allCategories[category]) {
+					allCategories[category] = [];
 				}
-				allTags[tag].push(post);
+				allCategories[category].push(post);
 			});
 		}
-		return allTags;
+		return allCategories;
 	}, {});
 
-	return Object.keys(tags).map((t) => {
+	return Object.keys(categories).map((category) => {
 		return {
-			params: { tag: t },
-			props: { tag: tags[t] },
+			params: { category },
+			props: { categoryPosts: categories[category] },
 		};
 	});
 }
 
-const { tag } = Astro.props;
-const { tag: currentTag } = Astro.params;
+const { categoryPosts } = Astro.props;
+const { category: currentCategory } = Astro.params;
 
-let sortedPosts = tag.sort(
+let sortedPosts = categoryPosts.sort(
 	(a, b) => new Date(b.data.added).valueOf() - new Date(a.data.added).valueOf(),
 );
 ---
@@ -46,7 +46,7 @@ let sortedPosts = tag.sort(
 		<Header />
 		<main>
 			<content>
-				<h3>Posts tagged with "{currentTag}"</h3>
+				<h3>Posts in "{currentCategory}"</h3>
 				<ul class="tags-list">
 					{
 						sortedPosts.map(

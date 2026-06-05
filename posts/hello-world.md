@@ -5,6 +5,8 @@ description: >-
   This is an example blog!
 tags:
   - personal
+categories:
+  - personal
 added: "May 01 2024"
 ---
 
