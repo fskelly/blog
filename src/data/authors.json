@@ -2,7 +2,9 @@
   {
     "name": "Fletcher Kelly",
     "slug": "fskelly",
-    "bio": "Tech geek and cloud engineer. Passionate about Azure, automation, and building things.",
+    "bio": "Hi! I'm Fletcher, and I like building useful things with cloud, code, and a bit of chaos.",
+    "intro": "I'm a cloud engineer focused on Azure, automation, and practical tooling that helps teams move faster without the drama.",
+    "details": "Outside work, you'll usually find me experimenting with home automation, tuning 3D printer setups, testing new workflows, and sharing what works (and what definitely did not).",
     "github": "fskelly"
   }
 ]

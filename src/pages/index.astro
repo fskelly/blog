@@ -7,12 +7,14 @@ import HomePosts from "../components/HomePosts.astro";
 import ColorScript from "../components/ColorScript.astro";
 import Tags from "../components/Tags.astro";
 import { title, subtitle } from "../settings/settings.json"
+import authors from "../data/authors.json";
 import getTags from "../scripts/getTags";
 import getCategories from "../scripts/getCategories";
 
 const posts = await getCollection("posts");
 const tags = getTags(posts);
 const categories = getCategories(posts);
+const primaryAuthor = authors[0];
 ---
 
 <!doctype html>
@@ -21,6 +23,14 @@ const categories = getCategories(posts);
 	<body>
 		<Header title={title} />
 		<main>
+			<section class="home-intro">
+				<h3>{primaryAuthor.bio}</h3>
+				<p>{primaryAuthor.intro}</p>
+				<p>
+					<a href={`${import.meta.env.BASE_URL}/about`}>Read more about me</a>
+				</p>
+			</section>
+
 			<h3>Here's my most recent posts</h3>
 
 			<HomePosts allPosts={posts} />
@@ -48,3 +58,18 @@ const categories = getCategories(posts);
 		<ColorScript />
 	</body>
 </html>
+
+<style>
+	.home-intro {
+		margin-bottom: 2rem;
+	}
+
+	.home-intro h3 {
+		margin-bottom: 0.75rem;
+	}
+
+	.home-intro p {
+		margin-bottom: 0.75rem;
+		line-height: 1.6;
+	}
+</style>

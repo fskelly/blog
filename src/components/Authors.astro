@@ -7,6 +7,8 @@ import authors from '../data/authors.json';
     <div class="author-card">
       <h3>{author.name}</h3>
       <p class="bio">{author.bio}</p>
+      {author.intro && <p class="intro">{author.intro}</p>}
+      {author.details && <p class="details">{author.details}</p>}
       {author.github && (
         <a href={`https://github.com/${author.github}`} target="_blank" rel="noopener noreferrer">
           GitHub
@@ -45,6 +47,12 @@ import authors from '../data/authors.json';
     margin: 0 0 1rem 0;
     color: var(--text-muted, #666);
     line-height: 1.5;
+  }
+
+  .author-card .intro,
+  .author-card .details {
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
   }
 
   .author-card a {
