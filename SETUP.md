@@ -33,14 +33,16 @@ npm error gyp ERR! find VS You need to install the latest version of Visual Stud
 winget install Schniz.fnm --accept-package-agreements --accept-source-agreements
 ```
 
-After install, add fnm to your PowerShell profile (`$PROFILE`):
+After install, **close and reopen your terminal** (winget adds fnm to PATH but the current shell won't see it).
+
+Then add fnm to your PowerShell profile so it auto-switches Node versions:
 
 ```powershell
-# Add to your PowerShell profile
-fnm env --use-on-cd --shell powershell | Out-String -Stream | Invoke-Expression
+# Add this line to your $PROFILE
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 ```
 
-Restart your shell after this.
+To edit your profile: `code $PROFILE` or `notepad $PROFILE`
 
 ## Step 2: Install & use Node 22
 
