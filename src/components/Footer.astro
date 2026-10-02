@@ -1,14 +1,47 @@
 ---
 const today = new Date();
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <footer>
-	&copy; {today.getFullYear()} cassidoo. <a href="https://github.com/cassidoo/blahg">This blog is open source</a>! <3
+	<div class="footer-capsule">
+		<span>&copy; {today.getFullYear()} Fletcher Kelly</span>
+		<span class="footer-links">
+			<a href={`${base}/rss.xml`}>RSS</a>
+			<a href="https://github.com/fskelly">GitHub</a>
+		</span>
+	</div>
 </footer>
 <style>
 	footer {
-		padding: 25px;
-		text-align: center;
-		font-size: 0.8rem;
+		width: min(calc(100% - 2rem), 960px);
+		margin: 2rem auto 1.5rem;
+	}
+
+	.footer-capsule {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.8rem 1.25rem;
+		background: var(--nav-bg);
+		backdrop-filter: blur(14px);
+		border: 1px solid var(--nav-border);
+		border-radius: 999px;
+		box-shadow: var(--shadow-sm);
+		color: var(--text-tertiary);
+		font-size: 0.75rem;
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 1rem;
+	}
+
+	@media (max-width: 520px) {
+		.footer-capsule {
+			flex-direction: column;
+			border-radius: 18px;
+		}
 	}
 </style>

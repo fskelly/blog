@@ -3,19 +3,14 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 ---
 
 <li class="post">
-	<a href={`${import.meta.env.BASE_URL}/post/${slug}/`} class="title">{title}</a>
-	<time datetime={date}>
-		{
-			new Date(date).toLocaleDateString("en-us", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-			})
-		}
-	</time>
-	<br />
-	{description && <span class="excerpt">{description}</span>}
-	<div>
+	<div class="post-meta">
+		<time datetime={date}>
+			{new Date(date).toLocaleDateString("en-us", { year: "numeric", month: "long", day: "numeric" })}
+		</time>
+	</div>
+	<h2><a href={`${import.meta.env.BASE_URL}/post/${slug}/`} class="title">{title}</a></h2>
+	{description && <p class="excerpt">{description}</p>}
+	<div class="post-taxonomy">
 		{
 			categories &&
 				categories.map((category) => (
@@ -34,3 +29,40 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 		}
 	</div>
 </li>
+
+<style>
+	.post {
+		padding: 0 0 2rem;
+		margin-bottom: 2rem;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.post h2 {
+		margin: 0.45rem 0 0.6rem;
+		font-size: 1.25rem;
+	}
+
+	.title {
+		color: var(--text-primary);
+	}
+
+	.title:hover {
+		color: var(--color-primary);
+	}
+
+	.post-meta {
+		font-size: 0.825rem;
+	}
+
+	.excerpt {
+		margin: 0;
+		color: var(--text-secondary);
+	}
+
+	.post-taxonomy {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 0.9rem;
+	}
+</style>

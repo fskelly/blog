@@ -11,7 +11,7 @@ import authors from "../data/authors.json";
 import getTags from "../scripts/getTags";
 import getCategories from "../scripts/getCategories";
 
-const posts = await getCollection("posts");
+const posts = await getCollection("posts", (post) => !post.data.draft);
 const tags = getTags(posts);
 const categories = getCategories(posts);
 const primaryAuthor = authors[0];
@@ -23,36 +23,27 @@ const primaryAuthor = authors[0];
 	<body>
 		<Header title={title} />
 		<main>
-			<section class="home-intro">
-				<h3>{primaryAuthor.bio}</h3>
+			<section class="hero">
+				<p class="eyebrow">Cloud, code, and practical tinkering</p>
+				<h1>{title}</h1>
+				<p class="hero-description">{subtitle}</p>
+				<p class="hero-bio">{primaryAuthor.bio}</p>
 				<p>{primaryAuthor.intro}</p>
-				<p>
-					<a href={`${import.meta.env.BASE_URL}/about`}>Read more about me</a>
-				</p>
+				<a class="about-link" href={`${import.meta.env.BASE_URL}/about`}>About me &rarr;</a>
 			</section>
 
-			<h3>Here's my most recent posts</h3>
+			<section class="recent-posts">
+				<div class="section-heading">
+					<h2>Recent posts</h2>
+					<a href={`${import.meta.env.BASE_URL}/posts`}>View all &rarr;</a>
+				</div>
+				<HomePosts allPosts={posts} />
+			</section>
 
-			<HomePosts allPosts={posts} />
-
-			<p class="center">
-				<a href={`${import.meta.env.BASE_URL}/posts`}>
-					View all posts
-				</a>
-			</p>
-
-			<p class="center">
-				You can also <a href={`${import.meta.env.BASE_URL}/rss.xml`}>
-					subscribe with RSS!
-				</a>
-			</p>
-			<br />
-
-			<Tags tags={categories} all routePrefix="category" heading="View posts by category" symbol="@" />
-
-			<br />
-
-			<Tags tags={tags} all />
+			<section class="browse">
+				<Tags tags={categories} all routePrefix="category" heading="Browse categories" symbol="@" />
+				<Tags tags={tags} all heading="Browse tags" />
+			</section>
 		</main>
 		<Footer />
 		<ColorScript />
@@ -60,16 +51,76 @@ const primaryAuthor = authors[0];
 </html>
 
 <style>
-	.home-intro {
-		margin-bottom: 2rem;
+	.hero {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 3rem 0 4rem;
+		text-align: center;
 	}
 
-	.home-intro h3 {
+	.eyebrow {
 		margin-bottom: 0.75rem;
+		color: var(--color-primary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
 	}
 
-	.home-intro p {
+	.hero h1 {
 		margin-bottom: 0.75rem;
-		line-height: 1.6;
+		color: var(--text-primary);
+	}
+
+	.hero-description {
+		margin: 0 auto 1.5rem;
+		color: var(--text-secondary);
+		font-size: 1.2rem;
+	}
+
+	.hero-bio {
+		margin-bottom: 0.5rem;
+		color: var(--text-primary);
+		font-weight: 700;
+	}
+
+	.hero p:not(.eyebrow, .hero-description, .hero-bio) {
+		max-width: 640px;
+		margin: 0 auto 1rem;
+	}
+
+	.about-link {
+		display: inline-block;
+		font-weight: 700;
+	}
+
+	.recent-posts {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2rem 0;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.section-heading h2 {
+		margin: 0;
+	}
+
+	.section-heading a {
+		font-size: 0.8rem;
+		font-weight: 700;
+		white-space: nowrap;
+	}
+
+	.browse {
+		max-width: 720px;
+		margin: 1rem auto 0;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border-color);
 	}
 </style>

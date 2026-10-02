@@ -1,11 +1,11 @@
 {
-	"name": "@cassidoo/blahg",
+	"name": "@fskelly/blog",
 	"version": "0.0.6",
 	"private": true,
 	"scripts": {
-		"dev": "npx tinacms dev -c \"astro dev\"",
+		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "tinacms build && astro build",
+		"build": "astro build && pagefind --site dist",
 		"build:astro": "astro build && pagefind --site dist",
 		"preview": "astro preview",
 		"astro": "astro"
@@ -19,8 +19,6 @@
 	},
 	"dependencies": {
 		"@pagefind/default-ui": "^1.5.2",
-		"@tinacms/cli": "^1.12.6",
-		"pagefind": "^1.5.2",
-		"tinacms": "^2.10.1"
+		"pagefind": "^1.5.2"
 	}
 }

@@ -10,7 +10,11 @@ import ColorScript from "../components/ColorScript.astro";
 	<body>
 		<Header />
 		<main>
-			<h1>Search</h1>
+			<header>
+				<p>Find something</p>
+				<h1>Search</h1>
+				<span>Search every published post.</span>
+			</header>
 			<div id="search"></div>
 		</main>
 		<Footer />
@@ -21,13 +25,28 @@ import ColorScript from "../components/ColorScript.astro";
 <style>
 	main {
 		max-width: 720px;
-		margin: 0 auto;
-		padding: 2rem 1rem;
 	}
 
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 1.5rem;
+	header {
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	header p {
+		margin: 0 0 0.5rem;
+		color: var(--color-primary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	header h1 {
+		margin-bottom: 0.75rem;
+	}
+
+	header span {
+		color: var(--text-secondary);
 	}
 </style>
 

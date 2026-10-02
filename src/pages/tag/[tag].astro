@@ -9,7 +9,7 @@ import ColorScript from "../../components/ColorScript.astro";
 import { title, subtitle } from "../../settings/settings.json"
 
 export async function getStaticPaths() {
-	let posts = await getCollection("posts");
+	let posts = await getCollection("posts", (post) => !post.data.draft);
 	const tags = posts.reduce((allTags, post) => {
 		const postTags = post.data.tags;
 		if (postTags) {

@@ -2,7 +2,10 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { title, subtitle } from "../settings/settings.json";
 
-let posts = await getCollection("posts");
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const site = new URL(`${base}/`, import.meta.env.SITE);
+
+let posts = await getCollection("posts", (post) => !post.data.draft);
 
 posts = posts
 	.sort(
@@ -15,10 +18,10 @@ export const GET = () =>
 	rss({
 		title: title || "",
 		description: subtitle || "",
-		site: import.meta.env.SITE,
+		site,
 		items: posts.map((post) => {
 			return {
-				link: `/post/${post.data.slug}`,
+				link: new URL(`${base}/post/${post.data.slug}/`, import.meta.env.SITE).toString(),
 				title: post.data.title,
 				pubDate: post.data.added,
 				description: post.data.description,
@@ -28,5 +31,5 @@ export const GET = () =>
 				}</updated>`,
 			};
 		}),
-		stylesheet: "/rss-styles.xsl",
+		stylesheet: `${base}/rss-styles.xsl`,
 	});

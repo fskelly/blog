@@ -1,0 +1,117 @@
+---
+const { headings = [] } = Astro.props;
+const items = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+{items.length > 0 && (
+	<>
+		<nav class="toc-desktop" aria-label="Table of contents">
+			<p>On this page</p>
+			<ul>
+				{items.map((heading) => (
+					<li class:list={{ nested: heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>
+				))}
+			</ul>
+		</nav>
+
+		<details class="toc-mobile">
+			<summary>
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h12M4 18h8"></path></svg>
+				On this page
+			</summary>
+			<ul>
+				{items.map((heading) => (
+					<li class:list={{ nested: heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>
+				))}
+			</ul>
+		</details>
+	</>
+)}
+
+<style>
+	p {
+		margin: 0 0 0.75rem;
+		color: var(--text-tertiary);
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		margin: 0;
+	}
+
+	a {
+		display: block;
+		padding: 0.35rem 0.7rem;
+		border-left: 2px solid transparent;
+		color: var(--text-tertiary);
+		font-size: 0.78rem;
+		line-height: 1.4;
+	}
+
+	a:hover {
+		border-left-color: var(--color-primary);
+		color: var(--color-primary);
+	}
+
+	.nested a {
+		padding-left: 1.35rem;
+		font-size: 0.72rem;
+	}
+
+	.toc-mobile {
+		display: none;
+	}
+
+	@media (max-width: 1080px) {
+		.toc-desktop {
+			display: none;
+		}
+
+		.toc-mobile {
+			position: fixed;
+			right: 1rem;
+			bottom: 4.75rem;
+			z-index: 900;
+			display: block;
+			max-width: min(280px, calc(100vw - 2rem));
+		}
+
+		.toc-mobile summary {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			width: fit-content;
+			margin-left: auto;
+			padding: 0.55rem 0.9rem;
+			background: var(--nav-bg);
+			backdrop-filter: blur(14px);
+			border: 1px solid var(--nav-border);
+			border-radius: 999px;
+			box-shadow: var(--shadow-md);
+			color: var(--text-secondary);
+			font-size: 0.78rem;
+			cursor: pointer;
+			list-style: none;
+		}
+
+		.toc-mobile ul {
+			max-height: 50vh;
+			margin-bottom: 0.5rem;
+			padding: 0.75rem;
+			overflow-y: auto;
+			background: var(--nav-bg);
+			backdrop-filter: blur(14px);
+			border: 1px solid var(--nav-border);
+			border-radius: 14px;
+			box-shadow: var(--shadow-md);
+		}
+	}
+</style>

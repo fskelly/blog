@@ -1,0 +1,222 @@
+<div class="lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+	<button class="lightbox-close" type="button" aria-label="Close image preview" title="Close">
+		<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+	</button>
+	<button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image" title="Previous image">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+	</button>
+	<figure>
+		<img class="lightbox-image" src="" alt="" />
+		<figcaption>
+			<span class="lightbox-caption"></span>
+			<span class="lightbox-count" aria-live="polite"></span>
+		</figcaption>
+	</figure>
+	<button class="lightbox-nav lightbox-next" type="button" aria-label="Next image" title="Next image">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+	</button>
+</div>
+
+<style>
+	.lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 10000;
+		align-items: center;
+		justify-content: center;
+		padding: 4rem 5rem 2rem;
+		background: rgb(2 6 23 / 0.94);
+		backdrop-filter: blur(8px);
+	}
+
+	.lightbox:not([hidden]) {
+		display: flex;
+	}
+
+	.lightbox figure {
+		display: flex;
+		width: min-content;
+		max-width: 100%;
+		max-height: 100%;
+		margin: 0;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.lightbox-image {
+		display: block;
+		max-width: min(88vw, 1440px);
+		max-height: calc(100vh - 8rem);
+		border-radius: 8px;
+		object-fit: contain;
+		box-shadow: 0 24px 70px rgb(0 0 0 / 0.5);
+	}
+
+	.lightbox figcaption {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		gap: 1.5rem;
+		color: #e2e8f0;
+		font-size: 0.8rem;
+	}
+
+	.lightbox-count {
+		color: #94a3b8;
+		white-space: nowrap;
+	}
+
+	.lightbox-close,
+	.lightbox-nav {
+		position: absolute;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		background: rgb(255 255 255 / 0.1);
+		border: 1px solid rgb(255 255 255 / 0.16);
+		border-radius: 50%;
+		color: #fff;
+		cursor: pointer;
+		transition: background var(--transition-fast), transform var(--transition-fast);
+	}
+
+	.lightbox-close:hover,
+	.lightbox-nav:hover {
+		background: rgb(255 255 255 / 0.2);
+	}
+
+	.lightbox-close:focus-visible,
+	.lightbox-nav:focus-visible {
+		outline: 2px solid #7dd3fc;
+		outline-offset: 3px;
+	}
+
+	.lightbox-close {
+		top: 1.25rem;
+		right: 1.25rem;
+		width: 42px;
+		height: 42px;
+	}
+
+	.lightbox-nav {
+		top: 50%;
+		width: 48px;
+		height: 48px;
+		transform: translateY(-50%);
+	}
+
+	.lightbox-prev {
+		left: 1.25rem;
+	}
+
+	.lightbox-next {
+		right: 1.25rem;
+	}
+
+	.lightbox.single-image .lightbox-nav {
+		display: none;
+	}
+
+	:global(.blog-post img) {
+		cursor: zoom-in;
+	}
+
+	@media (max-width: 640px) {
+		.lightbox {
+			padding: 4.5rem 1rem 5rem;
+		}
+
+		.lightbox-image {
+			max-width: calc(100vw - 2rem);
+			max-height: calc(100vh - 10rem);
+		}
+
+		.lightbox-nav {
+			top: auto;
+			bottom: 1rem;
+			transform: none;
+		}
+
+		.lightbox-prev {
+			left: calc(50% - 58px);
+		}
+
+		.lightbox-next {
+			right: calc(50% - 58px);
+		}
+	}
+</style>
+
+<script>
+	const lightbox = document.querySelector<HTMLElement>("#image-lightbox");
+	const preview = lightbox?.querySelector<HTMLImageElement>(".lightbox-image");
+	const caption = lightbox?.querySelector<HTMLElement>(".lightbox-caption");
+	const count = lightbox?.querySelector<HTMLElement>(".lightbox-count");
+	const closeButton = lightbox?.querySelector<HTMLButtonElement>(".lightbox-close");
+	const previousButton = lightbox?.querySelector<HTMLButtonElement>(".lightbox-prev");
+	const nextButton = lightbox?.querySelector<HTMLButtonElement>(".lightbox-next");
+	const images = Array.from(document.querySelectorAll<HTMLImageElement>(".blog-post img"));
+	let currentIndex = 0;
+	let trigger: HTMLImageElement | null = null;
+
+	function showImage(index: number) {
+		if (!preview || images.length === 0) return;
+		currentIndex = (index + images.length) % images.length;
+		const source = images[currentIndex];
+		const link = source.closest<HTMLAnchorElement>("a")?.href;
+		const linkedImage = link && /\.(avif|gif|jpe?g|png|webp)(?:[?#]|$)/i.test(link);
+		preview.src = linkedImage ? link : source.currentSrc || source.src;
+		preview.alt = source.alt;
+		if (caption) caption.textContent = source.alt;
+		if (count) count.textContent = `${currentIndex + 1} / ${images.length}`;
+	}
+
+	function openLightbox(image: HTMLImageElement, index: number) {
+		if (!lightbox) return;
+		trigger = image;
+		showImage(index);
+		lightbox.hidden = false;
+		lightbox.classList.toggle("single-image", images.length === 1);
+		document.body.style.overflow = "hidden";
+		closeButton?.focus();
+	}
+
+	function closeLightbox() {
+		if (!lightbox || lightbox.hidden) return;
+		lightbox.hidden = true;
+		document.body.style.overflow = "";
+		trigger?.focus();
+	}
+
+	images.forEach((image, index) => {
+		image.tabIndex = 0;
+		image.setAttribute("role", "button");
+		image.setAttribute("aria-label", `${image.alt || "Image"}. Open full-size preview.`);
+		image.addEventListener("click", (event) => {
+			event.preventDefault();
+			event.stopPropagation();
+			openLightbox(image, index);
+		});
+		image.addEventListener("keydown", (event) => {
+			if (event.key === "Enter" || event.key === " ") {
+				event.preventDefault();
+				openLightbox(image, index);
+			}
+		});
+	});
+
+	closeButton?.addEventListener("click", closeLightbox);
+	previousButton?.addEventListener("click", () => showImage(currentIndex - 1));
+	nextButton?.addEventListener("click", () => showImage(currentIndex + 1));
+	lightbox?.addEventListener("click", (event) => {
+		if (event.target === lightbox) closeLightbox();
+	});
+	document.addEventListener("keydown", (event) => {
+		if (!lightbox || lightbox.hidden) return;
+		if (event.key === "Escape") closeLightbox();
+		if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+		if (event.key === "ArrowRight") showImage(currentIndex + 1);
+	});
+</script>

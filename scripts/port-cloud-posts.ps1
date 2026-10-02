@@ -2,7 +2,7 @@
 # scripts/port-cloud-posts.ps1
 #
 # One-shot porter for Hugo posts from github.com/fskelly/cloud.fskelly.com
-# into this Astro+Tina blog.
+# into this Astro blog.
 #
 # Source layout (after `git clone` into tmp/cloud-source):
 #   tmp/cloud-source/content/posts/<YEAR>/<slug>.md           (loose)

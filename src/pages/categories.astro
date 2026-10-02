@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 import ColorScript from "../components/ColorScript.astro";
 import { title } from "../settings/settings.json";
 
-const posts = await getCollection("posts");
+const posts = await getCollection("posts", (post) => !post.data.draft);
 
 const categoryCounts = posts.reduce((acc, post) => {
 	const categories = post.data.categories || [];
@@ -28,7 +28,11 @@ const categories = Object.entries(categoryCounts)
 		<Header />
 		<main>
 			<content>
-				<h3>Categories</h3>
+				<header class="page-header">
+					<p>Topics</p>
+					<h1>Categories</h1>
+					<span>Browse the archive by subject.</span>
+				</header>
 				{
 					categories.length === 0 ?
 						<p>No categories yet.</p>
@@ -54,17 +58,60 @@ const categories = Object.entries(categoryCounts)
 </html>
 
 <style>
+	main {
+		max-width: 720px;
+	}
+
+	.page-header {
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.page-header p {
+		margin: 0 0 0.5rem;
+		color: var(--color-primary);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	.page-header h1 {
+		margin-bottom: 0.75rem;
+	}
+
+	.page-header span {
+		color: var(--text-secondary);
+	}
+
 	.categories-list {
-		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 0.75rem;
+		margin: 0;
 		padding: 0;
+		list-style: none;
 	}
 
 	.categories-list li {
-		margin: 0.5rem 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.85rem 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+	}
+
+	.categories-list .tag {
+		padding: 0;
+		background: transparent;
+		border: 0;
 	}
 
 	.count {
-		margin-left: 0.4rem;
-		opacity: 0.8;
+		color: var(--text-tertiary);
+		font-size: 0.8rem;
 	}
 </style>

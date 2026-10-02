@@ -34,7 +34,7 @@ I have spent time and this will be an on-going process to add GUIDs (yes, those 
 
 So a simple enough change, but time-consuming to implement.
 
-[![My GUID Subflow](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)
+[![My GUID Subflow](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/subflow.png)
 
 *Click image to view full size.*
 
@@ -46,19 +46,19 @@ Here is the export of my subflow - feel free to use it.
 
 Example flow, this is just a simple example to show how everything stitches together.
 
-[![Simple flow example using the GUID subflow](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)
+[![Simple flow example using the GUID subflow](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow.png)
 
 *Click image to view full size.*
 
 Configuration of sub-flow
 
-[![Subflow](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)
+[![Subflow](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-config.png)
 
 *Click image to view full size.*
 
 Debug node
 
-[![Debug information with GUID](/assetshttps://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)
+[![Debug information with GUID](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)](https://raw.githubusercontent.com/fskelly/fskelly.me/main/static/2025/enhancing-node-red-guids/flow-debug.png)
 
 *Click image to view full size.*
 

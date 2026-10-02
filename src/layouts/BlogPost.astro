@@ -5,16 +5,23 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ColorScript from "../components/ColorScript.astro";
 import Tags from "../components/Tags.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import Lightbox from "../components/Lightbox.astro";
 import getTags from "../scripts/getTags";
 import getCategories from "../scripts/getCategories";
 
-const posts = await getCollection("posts");
+const posts = await getCollection("posts", (post) => !post.data.draft);
 const allTags = getTags(posts);
 const allCategories = getCategories(posts);
 
 let {
-	content: { title, description, added, updated, tags, categories, heroImage, slug },
+	content: { title, description, added, updated, tags, categories, heroImage, slug, draft },
+	headings = [],
+	body = "",
 } = Astro.props;
+
+const readingTime = Math.max(1, Math.ceil(body.trim().split(/\s+/).length / 200));
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 // Get sorted posts for navigation
 const sortedPosts = posts.sort((a, b) => new Date(b.data.updated || b.data.added).valueOf() - new Date(a.data.updated || a.data.added).valueOf());
@@ -50,63 +57,138 @@ if (updated) {
 
 	<body>
 		<Header />
-		<main>
-			<article>
+		<div class="reading-progress" aria-hidden="true"></div>
+		<main class="post-layout">
+			<article class="post-article">
+				{draft && <div class="draft-banner" role="status">Draft preview - this post is excluded from production builds.</div>}
 				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-				<h1 class="article-title">{title}</h1>
-				{updated ?
-					<span><time>{added}</time>, last updated on <time>{updated}</time></span>
-					:
-					<span>{added && <time>{added}</time>}</span>
-				}
-				<Tags tags={categories} routePrefix="category" heading="View posts by category" symbol="@" />
-				<Tags tags={tags} />
-				<hr />
+				<header class="post-header">
+					<h1 class="article-title">{title}</h1>
+					<div class="post-meta">
+						{added && <time>{added}</time>}
+						<span aria-hidden="true">&middot;</span>
+						<span>{readingTime} min read</span>
+						{updated && <span>Updated <time>{updated}</time></span>}
+					</div>
+					<div class="post-tags">
+						<Tags tags={categories} routePrefix="category" symbol="@" />
+						<Tags tags={tags} />
+					</div>
+				</header>
 				<div class="blog-post">
 					<slot />
 				</div>
-				<hr />
 				<nav class="post-navigation">
 					{prevPost && (
-						<a href={`/blog/post/${prevPost.data.slug}/`} class="nav-prev" title="Previous post">
-							← {prevPost.data.title}
+						<a href={`${base}/post/${prevPost.data.slug}/`} class="nav-prev" title="Previous post">
+							<span>Previous</span>
+							<strong>&larr; {prevPost.data.title}</strong>
 						</a>
 					)}
 					{nextPost && (
-						<a href={`/blog/post/${nextPost.data.slug}/`} class="nav-next" title="Next post">
-							{nextPost.data.title} →
+						<a href={`${base}/post/${nextPost.data.slug}/`} class="nav-next" title="Next post">
+							<span>Next</span>
+							<strong>{nextPost.data.title} &rarr;</strong>
 						</a>
 					)}
 				</nav>
 			</article>
+			<aside><TableOfContents {headings} /></aside>
 		</main>
 		<Tags tags={allCategories} all routePrefix="category" heading="View posts by category" symbol="@" />
 		<Tags tags={allTags} all />
 		<Footer />
 		<ColorScript />
+		<Lightbox />
 	</body>
 </html>
 
 <style>
-	.post-navigation {
-		display: flex;
-		justify-content: space-between;
-		gap: 2rem;
-		margin: 3rem 0 0 0;
-		padding: 1.5rem;
-		background: var(--nav-bg, #f5f5f5);
+	.post-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 720px) 200px;
+		align-items: start;
+		justify-content: center;
+		gap: 2.5rem;
+		width: min(calc(100% - 3rem), 960px);
+		padding-top: 4rem;
+	}
+
+	.post-article {
+		min-width: 0;
+	}
+
+	.post-layout aside {
+		position: sticky;
+		top: 6rem;
+		padding-top: 1rem;
+	}
+
+	.post-header {
+		margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.draft-banner {
+		margin-bottom: 1.5rem;
+		padding: 0.75rem 1rem;
+		background: var(--color-primary-light);
+		border: 1px solid var(--color-primary);
 		border-radius: 8px;
+		color: var(--text-primary);
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+
+	.post-meta,
+	.post-tags {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.post-meta {
+		color: var(--text-tertiary);
+		font-size: 0.8rem;
+	}
+
+	.post-tags {
+		margin-top: 0.9rem;
+	}
+
+	.reading-progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1100;
+		width: var(--reading-progress, 0%);
+		height: 3px;
+		background: var(--color-primary);
+	}
+
+	.post-navigation {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--border-color);
 	}
 
 	.nav-prev,
 	.nav-next {
 		flex: 1;
-		text-decoration: none;
-		color: var(--accent-color, #0066cc);
-		font-weight: 500;
-		line-height: 1.4;
-		transition: opacity 0.2s ease;
-		word-break: break-word;
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: 1rem;
+		background: var(--bg-secondary);
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		transition: border-color var(--transition-fast), background var(--transition-fast);
 	}
 
 	.nav-prev {
@@ -119,7 +201,32 @@ if (updated) {
 
 	.nav-prev:hover,
 	.nav-next:hover {
-		opacity: 0.7;
+		background: var(--bg-tertiary);
+		border-color: var(--color-primary);
+	}
+
+	.post-navigation span {
+		color: var(--text-tertiary);
+		font-size: 0.7rem;
+		text-transform: uppercase;
+	}
+
+	.post-navigation strong {
+		overflow: hidden;
+		color: var(--text-primary);
+		font-size: 0.85rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	@media (max-width: 1080px) {
+		.post-layout {
+			grid-template-columns: minmax(0, 720px);
+		}
+
+		.post-layout aside {
+			display: none;
+		}
 	}
 
 	@media (max-width: 640px) {
@@ -133,3 +240,14 @@ if (updated) {
 		}
 	}
 </style>
+
+<script>
+	const updateReadingProgress = () => {
+		const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+		const progress = scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
+		document.documentElement.style.setProperty("--reading-progress", `${progress}%`);
+	};
+
+	window.addEventListener("scroll", updateReadingProgress, { passive: true });
+	updateReadingProgress();
+</script>

@@ -27,26 +27,8 @@ jobs:
 
       - run: npm ci
 
-      - name: Validate Tina secrets
-        env:
-          TINACLIENTID: ${{ secrets.TINACLIENTID }}
-          TINATOKEN: ${{ secrets.TINATOKEN }}
-          TINASEARCH: ${{ secrets.TINASEARCH }}
-        run: |
-          test -n "$TINACLIENTID" || (echo "Missing GitHub secret: TINACLIENTID" && exit 1)
-          test -n "$TINATOKEN" || (echo "Missing GitHub secret: TINATOKEN" && exit 1)
-          test -n "$TINASEARCH" || (echo "Missing GitHub secret: TINASEARCH" && exit 1)
-
       - name: Build site
-        env:
-          TINACLIENTID: ${{ secrets.TINACLIENTID }}
-          TINATOKEN: ${{ secrets.TINATOKEN }}
-          TINASEARCH: ${{ secrets.TINASEARCH }}
-        run: |
-          # Try TinaCMS build but don't block deployment if it fails
-          npx tinacms build || echo "TinaCMS build failed, continuing with Astro build"
-          npx astro build
-          npx pagefind --site dist
+        run: npm run build
 
       - name: Verify build output
         run: |
