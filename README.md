@@ -21,12 +21,14 @@ category and tag archives, RSS, and Pagefind-powered search.
 
 [fskelly.github.io/blog](https://fskelly.github.io/blog)
 
+[fskelly.com](https://fskelly.com/)
+
 ## Tech stack
 
 - **Static site**: Astro 5
 - **Theme**: Customized CapsuleX
 - **Search**: Pagefind
-- **Hosting**: GitHub Pages
+- **Hosting**: Hostinger and GitHub Pages
 - **Content**: Markdown files with Astro frontmatter
 
 ## Prerequisites
@@ -72,12 +74,11 @@ npm run dev
 npm run start
 ```
 
-Because this repository is a GitHub Pages project site, Astro uses `/blog` as
-its base path. Open:
+Local development defaults to the Hostinger domain-root layout. Open:
 
-- Site: <http://localhost:4321/blog>
-- RSS: <http://localhost:4321/blog/rss.xml>
-- Search: <http://localhost:4321/blog/search>
+- Site: <http://localhost:4321/>
+- RSS: <http://localhost:4321/rss.xml>
+- Search: <http://localhost:4321/search>
 
 Stop a development or preview server with `Ctrl+C`.
 
@@ -127,21 +128,23 @@ Store post images under a descriptive folder in `public/assets/`, for example:
 public/assets/2026/example-post/image.png
 ```
 
-Files under `public/` are served from the site root. Because this site uses the
-`/blog` base path, embed that image with:
+Files under `public/` are served from the site root. Embed that image with:
 
 ```markdown
-![Useful alternative text](/blog/assets/2026/example-post/image.png)
+![Useful alternative text](/assets/2026/example-post/image.png)
 ```
 
 To make the image clickable and open the full-size file:
 
 ```markdown
-[![Useful alternative text](/blog/assets/2026/example-post/image.png)](/blog/assets/2026/example-post/image.png)
+[![Useful alternative text](/assets/2026/example-post/image.png)](/assets/2026/example-post/image.png)
 ```
 
 Use meaningful alternative text, optimize large images, and crop or redact
 private details before publishing.
+
+The build adapts Markdown URLs starting with `/assets/` or `/blog/` to the
+selected host's base path, so existing post images work on both hosts.
 
 ## Build and test
 
@@ -164,17 +167,17 @@ npm run preview
 
 Then verify these routes manually:
 
-1. <http://localhost:4321/blog> renders the home page and theme controls.
+1. <http://localhost:4321/> renders the home page and theme controls.
 2. Open a post and check its table of contents, reading progress, and navigation.
-3. <http://localhost:4321/blog/search> returns results.
-4. <http://localhost:4321/blog/rss.xml> renders the styled RSS feed.
+3. <http://localhost:4321/search> returns results.
+4. <http://localhost:4321/rss.xml> renders the styled RSS feed.
 5. Check a narrow browser viewport and both light and dark themes.
 
 Optional response checks from another PowerShell terminal:
 
 ```powershell
-(Invoke-WebRequest http://localhost:4321/blog).StatusCode
-(Invoke-WebRequest http://localhost:4321/blog/rss.xml).StatusCode
+(Invoke-WebRequest http://localhost:4321/).StatusCode
+(Invoke-WebRequest http://localhost:4321/rss.xml).StatusCode
 Test-Path .\dist\pagefind\pagefind.js
 ```
 
@@ -215,16 +218,15 @@ GitHub Pages serves this site under `/blog`, while a typical Hostinger site
 serves it at the domain root. Build separately for each host; do not upload
 the GitHub Pages build to Hostinger.
 
-For Hostinger, set your actual public domain and build:
+The default build targets `https://fskelly.com/`. For Hostinger, run:
 
 ```powershell
-$env:SITE_URL = "https://your-domain.com"
-npm run build:hostinger
+npm run build
 ```
 
-The Hostinger command uses `/` as the base path. It also adjusts Markdown
-image and link URLs that start with `/blog/` for the selected base path.
-The domain is required so RSS, sitemap, and social URLs use the correct host.
+`npm run build:hostinger` is an equivalent alias. The default base path is `/`;
+RSS, sitemap, and social URLs use `https://fskelly.com`. To use another domain,
+set `SITE_URL` in the build environment.
 
 Upload the **contents** of `dist/` to your domain's `public_html/` folder using
 Hostinger File Manager or SFTP. The resulting layout must include
@@ -233,23 +235,21 @@ Hostinger File Manager or SFTP. The resulting layout must include
 site's generated files and remove any default index page that takes precedence.
 This is a static site; no Node.js process is needed on the server.
 
-For a Hostinger build pipeline, set `SITE_URL` to your domain, use
-`npm run build:hostinger` as the build command, and `dist` as the output folder.
-Alternatively, use `npm run build` with both `SITE_URL` and
-`SITE_BASE_PATH=/` set in the build environment. If hosting in a subdirectory,
-set `SITE_BASE_PATH` to that path instead, such as `/blog`.
+For a Hostinger build pipeline, use `npm run build` as the build command and
+`dist` as the output folder. Remove any old `SITE_BASE_PATH=/blog` override.
+If intentionally hosting in a subdirectory, set `SITE_BASE_PATH` to that path.
 
 Preview the Hostinger build locally:
 
 ```powershell
-$env:SITE_BASE_PATH = "/"
 npm run preview
 ```
 
 Open <http://localhost:4321/> and check a post with images, search, and
 `/rss.xml`. After uploading, repeat those checks on your actual domain.
 
-Before building or developing for GitHub Pages again, clear the overrides:
+If you previously set deployment overrides locally, clear them before a
+Hostinger build:
 
 ```powershell
 Remove-Item Env:SITE_URL -ErrorAction SilentlyContinue
@@ -257,6 +257,16 @@ Remove-Item Env:SITE_BASE_PATH -ErrorAction SilentlyContinue
 ```
 
 ### GitHub Pages
+
+The GitHub Actions workflow explicitly sets `SITE_URL=https://fskelly.github.io`
+and `SITE_BASE_PATH=/blog`, preserving the GitHub Pages layout. To build or
+develop that layout locally, set the same variables first:
+
+```powershell
+$env:SITE_URL = "https://fskelly.github.io"
+$env:SITE_BASE_PATH = "/blog"
+npm run build
+```
 
 Every push to `main` triggers
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml). The workflow:
@@ -277,8 +287,8 @@ Run workflow**.
 | `npm ci` | Install the exact locked dependency versions |
 | `npm run dev` | Start the Astro development server |
 | `npm run start` | Start the Astro development server |
-| `npm run build` | Build Astro and generate the Pagefind index |
-| `npm run build:hostinger` | Build for Hostinger at `/`; requires `SITE_URL` |
+| `npm run build` | Build for fskelly.com and generate the Pagefind index |
+| `npm run build:hostinger` | Equivalent Hostinger build alias |
 | `npm run build:astro` | Run the equivalent Astro and Pagefind build |
 | `npm run preview` | Preview the existing production build |
 

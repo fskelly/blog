@@ -1,13 +1,8 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
-const hostinger = process.env.npm_lifecycle_event === "build:hostinger";
-const site = process.env.SITE_URL || "https://fskelly.github.io";
-const base = process.env.SITE_BASE_PATH ?? (hostinger ? "/" : "/blog");
-
-if (hostinger && !process.env.SITE_URL) {
-	throw new Error("Set SITE_URL to your Hostinger site's full URL before running build:hostinger.");
-}
+const site = process.env.SITE_URL || "https://fskelly.com";
+const base = process.env.SITE_BASE_PATH ?? "/";
 
 function rebaseContentUrls() {
 	const prefix = base.replace(/\/$/, "");
