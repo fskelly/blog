@@ -1,5 +1,6 @@
 ---
 const { slug, title, tags, categories, description, date } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <li class="post">
@@ -8,13 +9,13 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 			{new Date(date).toLocaleDateString("en-us", { year: "numeric", month: "long", day: "numeric" })}
 		</time>
 	</div>
-	<h2><a href={`${import.meta.env.BASE_URL}/post/${slug}/`} class="title">{title}</a></h2>
+	<h2><a href={`${base}/post/${slug}/`} class="title">{title}</a></h2>
 	{description && <p class="excerpt">{description}</p>}
 	<div class="post-taxonomy">
 		{
 			categories &&
 				categories.map((category) => (
-					<a class="tag" href={`${import.meta.env.BASE_URL}/category/${category}`}>
+					<a class="tag" href={`${base}/category/${category}`}>
 						@{category}
 					</a>
 				))
@@ -22,7 +23,7 @@ const { slug, title, tags, categories, description, date } = Astro.props;
 		{
 			tags &&
 				tags.map((tag) => (
-					<a class="tag" href={`${import.meta.env.BASE_URL}/tag/${tag}`}>
+					<a class="tag" href={`${base}/tag/${tag}`}>
 						#{tag}
 					</a>
 				))

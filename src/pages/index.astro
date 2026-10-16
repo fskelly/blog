@@ -15,6 +15,7 @@ const posts = await getCollection("posts", (post) => !post.data.draft);
 const tags = getTags(posts);
 const categories = getCategories(posts);
 const primaryAuthor = authors[0];
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <!doctype html>
@@ -29,13 +30,13 @@ const primaryAuthor = authors[0];
 				<p class="hero-description">{subtitle}</p>
 				<p class="hero-bio">{primaryAuthor.bio}</p>
 				<p>{primaryAuthor.intro}</p>
-				<a class="about-link" href={`${import.meta.env.BASE_URL}/about`}>About me &rarr;</a>
+				<a class="about-link" href={`${base}/about`}>About me &rarr;</a>
 			</section>
 
 			<section class="recent-posts">
 				<div class="section-heading">
 					<h2>Recent posts</h2>
-					<a href={`${import.meta.env.BASE_URL}/posts`}>View all &rarr;</a>
+					<a href={`${base}/posts`}>View all &rarr;</a>
 				</div>
 				<HomePosts allPosts={posts} />
 			</section>

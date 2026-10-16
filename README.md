@@ -209,6 +209,55 @@ credentials, or unrelated local files.
 
 ## Deployment
 
+### Hostinger
+
+GitHub Pages serves this site under `/blog`, while a typical Hostinger site
+serves it at the domain root. Build separately for each host; do not upload
+the GitHub Pages build to Hostinger.
+
+For Hostinger, set your actual public domain and build:
+
+```powershell
+$env:SITE_URL = "https://your-domain.com"
+npm run build:hostinger
+```
+
+The Hostinger command uses `/` as the base path. It also adjusts Markdown
+image and link URLs that start with `/blog/` for the selected base path.
+The domain is required so RSS, sitemap, and social URLs use the correct host.
+
+Upload the **contents** of `dist/` to your domain's `public_html/` folder using
+Hostinger File Manager or SFTP. The resulting layout must include
+`public_html/index.html`, `public_html/_astro/`, `public_html/assets/`, and
+`public_html/pagefind/`, not `public_html/dist/index.html`. Replace the previous
+site's generated files and remove any default index page that takes precedence.
+This is a static site; no Node.js process is needed on the server.
+
+For a Hostinger build pipeline, set `SITE_URL` to your domain, use
+`npm run build:hostinger` as the build command, and `dist` as the output folder.
+Alternatively, use `npm run build` with both `SITE_URL` and
+`SITE_BASE_PATH=/` set in the build environment. If hosting in a subdirectory,
+set `SITE_BASE_PATH` to that path instead, such as `/blog`.
+
+Preview the Hostinger build locally:
+
+```powershell
+$env:SITE_BASE_PATH = "/"
+npm run preview
+```
+
+Open <http://localhost:4321/> and check a post with images, search, and
+`/rss.xml`. After uploading, repeat those checks on your actual domain.
+
+Before building or developing for GitHub Pages again, clear the overrides:
+
+```powershell
+Remove-Item Env:SITE_URL -ErrorAction SilentlyContinue
+Remove-Item Env:SITE_BASE_PATH -ErrorAction SilentlyContinue
+```
+
+### GitHub Pages
+
 Every push to `main` triggers
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml). The workflow:
 
@@ -229,6 +278,7 @@ Run workflow**.
 | `npm run dev` | Start the Astro development server |
 | `npm run start` | Start the Astro development server |
 | `npm run build` | Build Astro and generate the Pagefind index |
+| `npm run build:hostinger` | Build for Hostinger at `/`; requires `SITE_URL` |
 | `npm run build:astro` | Run the equivalent Astro and Pagefind build |
 | `npm run preview` | Preview the existing production build |
 

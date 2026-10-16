@@ -1,5 +1,6 @@
 ---
 const { tags, all, routePrefix = "tag", heading = "View posts by tag", symbol = "#" } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 {all && <h3 class="tag-title">{heading}</h3>}
@@ -8,7 +9,7 @@ const { tags, all, routePrefix = "tag", heading = "View posts by tag", symbol = 
 		tags &&
 			tags.map((tag) => (
 				<>
-					<a class="tag" href={`${import.meta.env.BASE_URL}/${routePrefix}/${tag}`}>
+					<a class="tag" href={`${base}/${routePrefix}/${tag}`}>
 						{symbol}{tag}
 					</a>
 					{` `}

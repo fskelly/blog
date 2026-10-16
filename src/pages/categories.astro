@@ -7,6 +7,7 @@ import ColorScript from "../components/ColorScript.astro";
 import { title } from "../settings/settings.json";
 
 const posts = await getCollection("posts", (post) => !post.data.draft);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const categoryCounts = posts.reduce((acc, post) => {
 	const categories = post.data.categories || [];
@@ -41,7 +42,7 @@ const categories = Object.entries(categoryCounts)
 							{
 								categories.map((category) => (
 									<li>
-										<a class="tag" href={`${import.meta.env.BASE_URL}/category/${category.name}`}>
+										<a class="tag" href={`${base}/category/${category.name}`}>
 											@{category.name}
 										</a>
 										<span class="count">({category.count})</span>

@@ -6,6 +6,7 @@
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro build && pagefind --site dist",
+		"build:hostinger": "astro build && pagefind --site dist",
 		"build:astro": "astro build && pagefind --site dist",
 		"preview": "astro preview",
 		"astro": "astro"
